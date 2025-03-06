@@ -11,8 +11,8 @@
                 <sub class="top-0 fs--13px">{{ __($general->cur_text) }}</sub>
             </h4>
             <div class="mt-4 d-flex flex-wrap gap-2">
-                <a href="{{ route('user.deposit.index') }}" class="btn btn--base btn--smd">@lang('Deposit')</a>
-                <a href="{{ route('user.withdraw') }}" class="btn btn--secondary btn--smd">@lang('Withdraw')</a>
+                <a href="{{ route('user.deposit.index') }}" class="btn btn--base btn--smd d-none">@lang('Deposit')</a>
+                <a href="{{ route('user.withdraw') }}" class="btn btn--secondary btn--smd d-none">@lang('Withdraw')</a>
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@ $user_info_curr = auth()->user();
 
             <!-- Direct Income -->
             <li>
-                <a href="{{ route('user.plan.direct_income') }}" class="{{ menuActive('user.plan.direct_income') }}">
+                <a href="{{ route('user.plan.direct_income') }}" class="{{ menuActive('user.plan.direct_income') }} d-none" >
                     <img src="{{ asset($activeTemplateTrue . 'users/images/icon/plans.png') }}" alt="icon"> @lang('Direct Income')
                 </a>
             </li>
@@ -124,7 +124,7 @@ $user_info_curr = auth()->user();
         </li>
         <li>
             <a href="{{ route('user.my.referral') }}" class="{{ menuActive('user.my.referral') }}">
-                <img src="{{ asset($activeTemplateTrue . 'users/images/icon/referral.png') }}" alt="icon"> @lang('My Referrals')
+                <img src="{{ asset($activeTemplateTrue . 'users/images/icon/referral.png') }}" alt="icon"> @lang('My Teams')
             </a>
         </li>
         <li>
@@ -149,19 +149,19 @@ $user_info_curr = auth()->user();
         </li>
       
         <li>
-            <a href="{{ route('user.withdraw') }}" class="{{ menuActive('user.withdraw*') }}">
+            <a href="{{ route('user.withdraw') }}" class="{{ menuActive('user.withdraw*') }} d-none">
                 <img src="{{ asset($activeTemplateTrue.'users/images/icon/withdraw.png') }}" alt="icon"> @lang('Withdraw')
             </a>
         </li>
         @if ($general->balance_transfer == Status::ENABLE)
             <li>
-                <a href="{{ route('user.balance.transfer') }}" class="{{ menuActive('user.balance.transfer') }}">
+                <a href="{{ route('user.balance.transfer') }}" class="{{ menuActive('user.balance.transfer') }} d-none">
                     <img src="{{ asset($activeTemplateTrue.'users/images/icon/transfer.png') }}" alt="icon"> @lang('Balance Transfer')
                 </a>
             </li>
         @endif
         <li>
-            <a href="{{ route('user.transactions') }}" class="{{ menuActive('user.transactions') }}">
+            <a href="{{ route('user.transactions') }}" class="{{ menuActive('user.transactions') }} d-none">
                 <img src="{{ asset($activeTemplateTrue.'users/images/icon/transactions.png') }}" alt="icon"> @lang('Transactions')
             </a>
         </li>
@@ -171,7 +171,7 @@ $user_info_curr = auth()->user();
             </a>
         </li>
         <li>
-            <a href="{{ route('user.twofactor') }}" class="{{ menuActive('user.twofactor') }}">
+            <a href="{{ route('user.twofactor') }}" class="{{ menuActive('user.twofactor') }} d-none">
                 <img src="{{ asset($activeTemplateTrue.'users/images/icon/2fa.png') }}" alt="icon"> @lang('2FA')
             </a>
         </li>
@@ -192,3 +192,28 @@ $user_info_curr = auth()->user();
         </li>
     </ul>
 </div>
+<style type="text/css">
+    .dashboard-sidebar {
+    position: fixed;
+    top: 0;
+    width: 310px;
+    height: 100%;
+    padding: 20px;
+    border-right: 1px solid hsl(var(--border));
+    /* background-color: hsl(0deg 32.19% 48.84%); */
+    overflow-y: auto;
+    background: rgb(60 48 48);
+    background: linear-gradient(0deg, rgb(40 54 54) 0%, rgb(193 186 170) 100%);
+}
+
+.sidebar-menu li a{
+
+    text-decoration: none;
+    color: hsl(0deg 0% 97.64%);
+ 
+}
+.sidebar-menu li a.active, .sidebar-menu li a:hover {
+    color: hsl(0deg 0% 100%);
+    background-color: hsl(var(--base) / 0.1);
+}
+</style>
