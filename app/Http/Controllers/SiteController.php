@@ -196,7 +196,7 @@ class SiteController extends Controller
 
     public function CheckUsername(Request $request)
     {
-        $user = User::where('username', $request->ref_id)->where('status',0)->first();
+        $user = User::where('username', $request->ref_id)->first();
         $leftJoinUnderUsername = null;
         $rightJoinUnderUsername = null;
 		 //return response()->json($user);

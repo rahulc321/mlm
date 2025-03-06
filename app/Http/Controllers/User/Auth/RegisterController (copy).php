@@ -68,7 +68,7 @@ class RegisterController extends Controller
         }
 
 
-        $userId_gen = 'SH' . random_int(100000, 999999);
+        $userId_gen = '2RS' . random_int(100000, 999999);
         while (1) {
             $user_count_exists = User::where('username', $userId_gen)->count();
             if ($user_count_exists > 0) {
@@ -123,16 +123,7 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request)
-    {   
-
-        $request->merge([
-            'place_id' => $request->referral,
-            'position' => 1,
-        ]);
-        
-
-
-        //dd($request->all());
+    {
         $this->validator($request->all())->validate();
 
         $request->session()->regenerateToken();
@@ -147,7 +138,7 @@ class RegisterController extends Controller
             $notify[] = ['error', 'Invalid captcha provided'];
             return back()->withNotify($notify);
         }
-        
+
 
         $exist = User::where('mobile', $request->mobile_code . $request->mobile)->first();
         if ($exist) {
@@ -168,20 +159,17 @@ class RegisterController extends Controller
         }
 
 
-        if (empty($request->referral)) {
-            $notify[] = ['error', 'Referral Id is required'];
+        if (empty($request->referral) || empty($request->place_id)) {
+            $notify[] = ['error', 'Referral and Place Id is required'];
             return back()->withNotify($notify)->withInput();
         }
-
-
-        
 
         if (empty($request->position)) {
             $notify[] = ['error', 'Position is required'];
             return back()->withNotify($notify)->withInput();
         }
 
-       
+
         $place_id_user_exist = User::where('username', $request->place_id)->first();
         if (!$place_id_user_exist) {
             $notify[] = ['error', 'The place id user does not exists'];
@@ -209,19 +197,19 @@ class RegisterController extends Controller
             $notify[] = ['error', 'The place id is not available'];
             return back()->withNotify($notify)->withInput();
         } else {
-            // if ($request->position == 1) {
-            //     if (isset($place_id_user_exist_left->id)) {
-            //         $notify[] = ['error', 'The place id cannot be used anymore'];
-            //         return back()->withNotify($notify)->withInput();
-            //     }
-            // } else {
-            //     if ($request->position == 2) {
-            //         if (isset($place_id_user_exist_right->id)) {
-            //             $notify[] = ['error', 'The place id cannot be used anymore'];
-            //             return back()->withNotify($notify)->withInput();
-            //         }
-            //     }
-            // }
+            if ($request->position == 1) {
+                if (isset($place_id_user_exist_left->id)) {
+                    $notify[] = ['error', 'The place id cannot be used anymore'];
+                    return back()->withNotify($notify)->withInput();
+                }
+            } else {
+                if ($request->position == 2) {
+                    if (isset($place_id_user_exist_right->id)) {
+                        $notify[] = ['error', 'The place id cannot be used anymore'];
+                        return back()->withNotify($notify)->withInput();
+                    }
+                }
+            }
         }
 
 
