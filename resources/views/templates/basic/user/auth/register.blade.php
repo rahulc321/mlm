@@ -198,6 +198,12 @@
 @endsection
 @push('style')
     <style>
+        .page-header.bg_img{
+        display:none;
+    }
+    .padding-top {
+        padding-top: 19px;
+    }
         .country-code .input-group-text {
             background: #fff !important;
         }
