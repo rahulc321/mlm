@@ -513,12 +513,37 @@ class UserController extends Controller
         return view($this->activeTemplate . 'user.bv_log', compact('pageTitle', 'logs'));
     }
 
+    public function getUserStage($userId)
+    {
+        $stage = 1;
+        $user = User::find($userId);
+
+        while ($user && $user->ref_by) {
+            $user = User::find($user->ref_by);
+            $stage++;
+        }
+
+        return $stage;
+    }
+
     public function myReferralLog()
     {
-        $pageTitle = "My Referral";
-        $logs = User::where('ref_by', auth()->id())->orderBy('id', 'desc')->paginate(getPaginate());
+       $pageTitle = "My Referral";
+
+        // Fetch users referred by the authenticated user
+        $logs = User::where('ref_by', auth()->id())
+            ->orderBy('id', 'desc')
+            ->paginate(getPaginate());
+
+        // Add stage to each referred user
+        foreach ($logs as $log) {
+            $log->stage = $this->getUserStage($log->id);
+        }
+
+        echo '<pre>';print_r($logs->toArray());die;
 
         return view($this->activeTemplate . 'user.my_referral', compact('pageTitle', 'logs'));
+
     }
     public function myTeam()
     {
