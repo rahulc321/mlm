@@ -526,6 +526,22 @@ class UserController extends Controller
         return $stage;
     }
 
+    public function getStageUsers($userId, $stage)
+    {
+        if ($stage == 1) {
+            return User::where('ref_by', $userId)->get();
+        } elseif ($stage == 2) {
+            $firstStageUsers = User::where('ref_by', $userId)->pluck('id');
+            return User::whereIn('ref_by', $firstStageUsers)->get();
+        } elseif ($stage == 3) {
+            $firstStageUsers = User::where('ref_by', $userId)->pluck('id');
+            $secondStageUsers = User::whereIn('ref_by', $firstStageUsers)->pluck('id');
+            return User::whereIn('ref_by', $secondStageUsers)->get();
+        }
+        return collect(); // Return empty collection for invalid stage
+    }
+
+
     public function myReferralLog()
     {
        $pageTitle = "My Referral";
@@ -533,16 +549,17 @@ class UserController extends Controller
         // Fetch users referred by the authenticated user
         $logs = User::where('ref_by', auth()->id())
             ->orderBy('id', 'desc')
-            ->paginate(getPaginate());
+            ->get();
 
-        // Add stage to each referred user
-        foreach ($logs as $log) {
-            $log->stage = $this->getUserStage($log->id);
-        }
+        $userId =  auth()->id(); // ID of the main user
+        $logs = [];
+        $firstStageUsers = $this->getStageUsers($userId, 1);
+        $secondStageUsers = $this->getStageUsers($userId, 2);
+        $thirdStageUsers = $this->getStageUsers($userId, 3);
+        //echo '<pre>'; print_r($firstStageUsers); die;
 
-        echo '<pre>';print_r($logs->toArray());die;
+        return view($this->activeTemplate . 'user.my_referral', compact('firstStageUsers', 'secondStageUsers','thirdStageUsers','logs','pageTitle'));
 
-        return view($this->activeTemplate . 'user.my_referral', compact('pageTitle', 'logs'));
 
     }
     public function myTeam()
