@@ -15,7 +15,7 @@
                 </li>
 
 
-                <li class="sidebar-menu-item sidebar-dropdown d-none">
+                <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{ menuActive('admin.plan*', 3) }}">
                         <i class="menu-icon las la-paper-plane"></i>
                         <span class="menu-title">@lang('Plan')</span>
@@ -34,25 +34,25 @@
 
 
                             </li>
-                            <li class="sidebar-menu-item {{ menuActive('admin.plan.bonus') }} ">
+                            <li class="sidebar-menu-item {{ menuActive('admin.plan.bonus') }} d-none">
                                 <a href="{{ route('admin.plan.bonus') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Bonus')</span>
                                 </a>
                             </li>
-                              <li class="sidebar-menu-item {{ menuActive('admin.plan.level_income') }} ">
+                              <li class="sidebar-menu-item {{ menuActive('admin.plan.level_income') }} d-none">
                                 <a href="{{ route('admin.plan.level_income') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Level Income')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{ menuActive('admin.plan.income_slabs') }} ">
+                            <li class="sidebar-menu-item {{ menuActive('admin.plan.income_slabs') }} d-none">
                                 <a href="{{ route('admin.plan.income_slabs') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Income Slabs')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{ menuActive('admin.plan.turnover_income') }} ">
+                            <li class="sidebar-menu-item {{ menuActive('admin.plan.turnover_income') }} d-none">
                                 <a href="{{ route('admin.plan.turnover_income') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Turnover Income')</span>

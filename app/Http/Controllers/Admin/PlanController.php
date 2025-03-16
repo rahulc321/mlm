@@ -290,10 +290,10 @@ class PlanController extends Controller
         $this->validate($request, [
             'name'              => 'required',
             'price'             => 'required|numeric|min:0',
-            'maxprice'             => 'required|numeric|min:1',
-            'bv'                => 'required|min:0|integer',
+           // 'maxprice'             => 'required|numeric|min:1',
+            // 'bv'                => 'required|min:0|integer',
             'ref_com'           => 'required|numeric|min:0',
-            'tree_com'          => 'required|numeric|min:0',
+            //'tree_com'          => 'required|numeric|min:0',
         ]);
 
         $plan = new Plan();
@@ -303,10 +303,10 @@ class PlanController extends Controller
 
         $plan->name             = $request->name;
         $plan->price            = $request->price;
-        $plan->maxprice            = $request->maxprice;
-        $plan->bv               = $request->bv;
+        $plan->maxprice            = $request->price;
+       // $plan->bv               = $request->bv;
         $plan->ref_com          = $request->ref_com;
-        $plan->tree_com         = $request->tree_com;
+        //$plan->tree_com         = $request->tree_com;
         $plan->save();
 
         $notify[] = ['success', 'Plan saved successfully'];
