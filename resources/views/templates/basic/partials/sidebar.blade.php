@@ -197,5 +197,6 @@ $user_info_curr = auth()->user();
         background-image: linear-gradient(45deg, rgb(26, 42, 108), rgb(178, 31, 31)) !important;
     }
 
+
     
 </style>
