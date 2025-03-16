@@ -70,7 +70,7 @@ $user_info_curr = auth()->user();
 
 
         <li>
-            <a href="{{ route('user.plan.index') }}" class="{{ menuActive('user.plan.index') }} hide_1">
+            <a href="{{ route('user.plan.index') }}" class="{{ menuActive('user.plan.index') }}">
                 <img src="{{ asset($activeTemplateTrue . 'users/images/icon/plans.png') }}" alt="icon"> @lang('Plan')
             </a>
         </li>

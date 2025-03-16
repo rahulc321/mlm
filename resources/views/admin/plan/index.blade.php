@@ -11,9 +11,9 @@
                                 <tr>
                                     <th>@lang('Name')</th>
                                     <th>@lang('Price')</th>
-                                    <th>Trading Profit</th>
+                                     
                                     <th>@lang('Referral Commission')</th>
-                                    <th>@lang('Tree Commission')</th>
+                                    
                                     <th>@lang('Status')</th>
                                     <th>@lang('Action')</th>
                                 </tr>
@@ -22,13 +22,11 @@
                                 @forelse($plans as $key => $plan)
                                     <tr>
                                         <td>{{ __($plan->name) }}</td>
-                                        <td>{{ showAmount($plan->price)}} - {{ showAmount($plan->maxprice) }} {{ __($general->cur_text) }}</td>
-                                        <td>{{ $plan->bv }}</td>
+                                        <td>{{ showAmount($plan->price)}} {{ __($general->cur_text) }}</td>
+                                         
                                         <td> {{ showAmount($plan->ref_com) }} {{ __($general->cur_text) }}</td>
 
-                                        <td>
-                                            {{ showAmount($plan->tree_com) }} {{ __($general->cur_text) }}
-                                        </td>
+                                         
                                         <td>
                                             @php echo $plan->statusBadge @endphp
                                         </td>
@@ -89,22 +87,13 @@
                         <input class="form-control plan_id" name="id" type="hidden">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label>@lang('Name')</label>
+                                <label>@lang('Plan Name')</label>
                                 <input class="form-control name" name="name" type="text" required>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label> Min Price </label>
-                                <div class="input-group">
-                                    <span class="input-group-text">{{ $general->cur_sym }}</span>
-                                    <input class="form-control price" name="price" type="number" step="any" required>
-                                </div>
-                            </div>
+                            
                       
-					<div class="form-group col-md-6">                                <label>Max Price </label>                                <div class="input-group">                                    <span class="input-group-text">{{ $general->cur_sym }}</span>                                    <input class="form-control maxprice" name="maxprice" type="number" step="any" required>                                </div>                            </div>
-                        <div class="form-group col-md-6">
-                            <label>Trading Profit</label> <i class="fas fa-question-circle text--gray" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('When someone buys this plan, all of his ancestors will get this value which will be used for a matching bonus.')"></i>
-                            <input class="form-control bv" name="bv" type="number" required>
-                        </div>
+					<div class="form-group col-md-6">                                <label>Price </label>                                <div class="input-group">                                    <span class="input-group-text">{{ $general->cur_sym }}</span>                                    <input class="form-control maxprice" name="price" type="number" step="any" required>                                </div>                            </div>
+                        
 
                         <div class="form-group col-md-6">
                             <label>@lang('Referral Commission')</label> <i class="fas fa-question-circle text--gray" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('If a user who subscribed to this plan, refers someone and if the referred user buys a plan, then he will get this amount.')"></i>
@@ -114,13 +103,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-md-6">
-                            <label>@lang('Tree Commission')</label> <i class="fas fa-question-circle text--gray" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('When someone buys this plan, all of his ancestors will get this amount.')"></i>
-                            <div class="input-group">
-                                <span class="input-group-text">{{ $general->cur_sym }}</span>
-                                <input class="form-control tree_com" name="tree_com" type="number" step="any" required>
-                            </div>
-                        </div>
+                         
   </div>
                     </div>
                     <div class="modal-footer">
@@ -147,21 +130,21 @@
                         <input class="form-control plan_id" name="id" type="hidden">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label>@lang('Name')</label>
+                                <label>@lang('Plan Name')</label>
                                 <input class="form-control" name="name" type="text" required>
                             </div>
-                            <div class="form-group col-md-6">
+                           <!--  <div class="form-group col-md-6 d-none">
                                 <label>Min Price </label>
                                 <div class="input-group">
                                     <span class="input-group-text">{{ $general->cur_sym }}</span>
-                                    <input class="form-control" name="price" type="number" step="any" required>
+                                    <input class="form-control" name="price" type="number" step="any">
                                 </div>
-                            </div>
-                       						<div class="form-group col-md-6">                                <label>Max Price </label>                                <div class="input-group">                                    <span class="input-group-text">{{ $general->cur_sym }}</span>                                    <input class="form-control" name="maxprice" type="number" step="any" required>                                </div>                            </div>
-                        <div class="form-group col-md-6">
+                            </div> -->
+                       						<div class="form-group col-md-6">                                <label> Price </label>                                <div class="input-group">                                    <span class="input-group-text">{{ $general->cur_sym }}</span>                                    <input class="form-control" name="price" type="number" step="any" required>                                </div>                            </div>
+                       <!--  <div class="form-group col-md-6">
                             <label> Trading Profit</label> <i class="fas fa-question-circle text--gray" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('When someone buys this plan, all of his ancestors will get this value which will be used for a matching bonus.')"></i>
                             <input class="form-control" name="bv" type="number" type="number" required>
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-6">
                             <label> @lang('Referral Commission')</label> <i class="fas fa-question-circle text--gray" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('If a user who subscribed to this plan, refers someone and if the referred user buys a plan, then he will get this amount.')"></i>
                             <div class="input-group">
@@ -169,13 +152,13 @@
                                 <input class="form-control" name="ref_com" type="number" step="any" required>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
+                       <!--  <div class="form-group col-md-6">
                             <label> @lang('Tree Commission')</label> <i class="fas fa-question-circle text--gray" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('When someone buys this plan, all of his ancestors will get this amount.')"></i>
                             <div class="input-group">
                                 <span class="input-group-text">{{ $general->cur_sym }}</span>
                                 <input class="form-control" name="tree_com" type="number" step="any" required>
                             </div>
-                        </div>
+                        </div> -->
  </div>
                     </div>
                     <div class="modal-footer">

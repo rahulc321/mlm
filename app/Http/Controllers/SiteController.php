@@ -241,6 +241,7 @@ class SiteController extends Controller
     {
         $pageTitle = "Plan";
         $plans = Plan::where('status', Status::ENABLE)->limit(4)->get();
+        
         // $plans = Plan::where('status', Status::ENABLE)->paginate(getPaginate(12));
         $page = Page::where('tempname', $this->activeTemplate)->where('slug', 'plan')->firstOrFail();
         $sections = $page;
