@@ -193,27 +193,9 @@ $user_info_curr = auth()->user();
     </ul>
 </div>
 <style type="text/css">
-    .dashboard-sidebar {
-    position: fixed;
-    top: 0;
-    width: 310px;
-    height: 100%;
-    padding: 20px;
-    border-right: 1px solid hsl(var(--border));
-    /* background-color: hsl(0deg 32.19% 48.84%); */
-    overflow-y: auto;
-    background: rgb(60 48 48);
-    background: linear-gradient(0deg, rgb(40 54 54) 0%, rgb(193 186 170) 100%);
-}
+     button{
+        background-image: linear-gradient(45deg, rgb(26, 42, 108), rgb(178, 31, 31)) !important;
+    }
 
-.sidebar-menu li a{
-
-    text-decoration: none;
-    color: hsl(0deg 0% 97.64%);
- 
-}
-.sidebar-menu li a.active, .sidebar-menu li a:hover {
-    color: hsl(0deg 0% 100%);
-    background-color: hsl(var(--base) / 0.1);
-}
+    
 </style>
