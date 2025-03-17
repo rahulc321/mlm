@@ -25,7 +25,7 @@ class PlanController extends Controller
         $user = auth()->user();
         $pageTitle = "Plans";
         // $plans = Plan::where('status', Status::ENABLE)->orderBy('price', 'asc')->paginate(getPaginate(15));
-        $plans = Plan::where('status', Status::ENABLE)->orderBy('id', 'desc')->paginate(getPaginate(15));
+        $plans = Plan::where('status', Status::ENABLE)->orderBy('price', 'ASC')->paginate(getPaginate(15));
         $gatewayCurrency = GatewayCurrency::whereHas('method', function ($gate) {
             $gate->where('status', Status::ENABLE);
         })->with('method')->orderby('name')->get();
