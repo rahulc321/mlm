@@ -39,7 +39,7 @@ $notice = getContent('notice.content', true);
     </div>
     @endif
 
-    @if (@$notice->data_values->notice_content != null && !$user->plan_id)
+    
     <div class="card custom--card">
         <div class="card-header">
             <h5>@lang('Information')</h5>
@@ -52,7 +52,7 @@ $notice = getContent('notice.content', true);
         </div>
         <hr>
    
-    @endif
+  
 
 
     <div class="row g-3 mt-3 mb-4 p-4 itemsdash">
