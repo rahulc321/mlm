@@ -488,10 +488,12 @@ function turnoverIncome(Request $request)
     }
 
     function planPurchase(Request $request)
-    {
+    {   
+
+       // dd(\Auth::Id());
         $request->validate([
             'id' => 'required',
-            'payment_method' => 'required'
+            'txn_id' => 'required'
         ]);
         $plan = Plan::where('status', Status::ENABLE)->findOrFail($request->id);
         $user = auth()->user();
@@ -501,32 +503,32 @@ function turnoverIncome(Request $request)
         //     return back()->withNotify($notify);
         // }
 
-        if ($request->payment_method != 'balance') {
-            $gate = GatewayCurrency::whereHas('method', function ($gate) {
-                $gate->where('status', Status::ENABLE);
-            })->find($request->payment_method);
+        // if ($request->payment_method != 'balance') {
+        //     $gate = GatewayCurrency::whereHas('method', function ($gate) {
+        //         $gate->where('status', Status::ENABLE);
+        //     })->find($request->payment_method);
 
-            if (!$gate) {
-                $notify[] = ['error', 'Invalid gateway'];
-                return back()->withNotify($notify);
-            }
+        //     if (!$gate) {
+        //         $notify[] = ['error', 'Invalid gateway'];
+        //         return back()->withNotify($notify);
+        //     }
 
-            if ($gate->min_amount > $plan->price || $gate->max_amount < $plan->price) {
-                $notify[] = ['error', 'Plan price crossed gateway limit.'];
-                return back()->withNotify($notify);
-            }
+        //     if ($gate->min_amount > $plan->price || $gate->max_amount < $plan->price) {
+        //         $notify[] = ['error', 'Plan price crossed gateway limit.'];
+        //         return back()->withNotify($notify);
+        //     }
 
-            $data = PaymentController::insertDeposit($gate, $plan->price, $plan);
-            session()->put('Track', $data->trx);
-            return to_route('user.deposit.confirm');
-        }
+        //     $data = PaymentController::insertDeposit($gate, $plan->price, $plan);
+        //     session()->put('Track', $data->trx);
+        //     return to_route('user.deposit.confirm');
+        // }
 
-        if ($user->balance < $plan->price) {
-            $notify[] = ['error', 'You\'ve no sufficient balance'];
-            return back()->withNotify($notify);
-        }
+        // if ($user->balance < $plan->price) {
+        //     $notify[] = ['error', 'You\'ve no sufficient balance'];
+        //     return back()->withNotify($notify);
+        // }
 
-        $trx = getTrx();
+        $trx = $request->txn_id;
 
         $mlm = new Mlm($user, $plan, $trx);
         $mlm->purchasePlan();

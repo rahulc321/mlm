@@ -434,6 +434,13 @@
                     </div>
                 </li>
 
+                <li class="sidebar-menu-item  {{ menuActive('admin.users.payment_request') }}">
+                    <a href="{{ route('admin.users.payment_request') }}" class="nav-link" data-default-url="{{ route('admin.subscriber.index') }}">
+                    <i class="menu-icon las la-file-invoice-dollar"></i>
+                        <span class="menu-title">@lang('Payment Request') </span>
+                    </a>
+                </li>
+
 
                 <li class="sidebar-menu-item  {{ menuActive('admin.subscriber.*') }}">
                     <a href="{{ route('admin.subscriber.index') }}" class="nav-link" data-default-url="{{ route('admin.subscriber.index') }}">
@@ -442,9 +449,9 @@
                     </a>
                 </li>
 
-                <li class="sidebar__menu-header">@lang('Settings')</li>
+                <li class="sidebar__menu-header d-none1">@lang('Settings')</li>
 
-                <li class="sidebar-menu-item {{ menuActive('admin.app_settings.index') }}">
+                <li class="sidebar-menu-item {{ menuActive('admin.app_settings.index') }} d-none">
                     <a href="{{ route('admin.app_settings.index') }}" class="nav-link">
                         <i class="menu-icon las la-life-ring"></i>
                         <span class="menu-title">@lang('Setting')</span>
@@ -669,5 +676,26 @@
             <?php
         }
         ?>
+
+    .bg--dark  {
+         
+        background-image: linear-gradient(45deg, #1a2a6c, #b21f1f) !important;
+        
+    }
+
+    thead  {
+        background-image: linear-gradient(45deg, #1a2a6c, #b21f1f) !important; 
+    }
+
+    table.table--light thead th {
+    border: none;
+    color: #ffffff;
+    background-color: transparent !important;
+}
+
+.btn--primary{
+    background-image: linear-gradient(45deg, #1a2a6c, #b21f1f) !important; 
+}
+
     </style>
 @endpush

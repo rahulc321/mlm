@@ -57,6 +57,25 @@ class ManageUsersController extends Controller
         return view('admin.users.list', compact('pageTitle', 'users'));
     }
 
+
+    public function payment_request()
+    {
+        $pageTitle = 'Payment Request';
+        $pr = 1;
+        $users = $this->userDataNew(1);
+        return view('admin.users.list', compact('pageTitle', 'users','pr'));
+    }
+
+    protected function userDataNew($scope = null)
+    {
+        $users = User::searchable(['username', 'email']);
+        if ($scope) {
+            $users = $users->where('is_payment',1);
+        }
+        return $users->orderBy('id', 'desc')->paginate(getPaginate());
+    }
+
+
     public function bannedUsers()
     {
         $pageTitle = 'Banned Users';
@@ -249,10 +268,20 @@ class ManageUsersController extends Controller
         $general = gs();
         $trx = getTrx();
 
+        $gsPercent = $general->direct_income/100;
+        $uplineCommision = $amount*$gsPercent;
+
+        $uplineUser = User::findOrFail($user->ref_by);
+        $uplineUser->balance += $uplineCommision;
+        $uplineUser->save();
+        //echo '<pre>'; print_r($uplineUser->balance);die;
+
         $transaction = new Transaction();
 
         if ($request->act == 'add') {
             $user->balance += $amount;
+
+            $user->is_payment = 2;
 
             $transaction->trx_type = '+';
             $transaction->remark = 'balance_add';
@@ -274,8 +303,9 @@ class ManageUsersController extends Controller
             $notifyTemplate = 'BAL_SUB';
             $notify[] = ['success', $general->cur_sym . $amount . ' subtracted successfully'];
         }
-
+        
         $user->save();
+        
 
         $transaction->user_id = $user->id;
         $transaction->amount = $amount;

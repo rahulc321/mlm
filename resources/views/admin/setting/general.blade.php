@@ -4,7 +4,7 @@
         <div class="col-lg-12 col-md-12 mb-30">
             <div class="card">
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-4 col-sm-6">
@@ -101,6 +101,22 @@
                                         <div class="input-group-text">
                                             {{ __($general->cur_text) }}
                                         </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                <?php 
+                                //dd(getAmount($general->direct_income));
+                                ?>
+                                <div class="form-group">
+                                    <label>@lang('Upload Qr Code')</label>
+                                    <div class="input-group">
+                                        <input class="form-control" name="qr_code" type="file" value="{{ getAmount($general->direct_income) }}" step="any">
+                                        <img src="{{ asset('images/' . $general->qr_code) }}" alt="QR Code">
+
+
                                     </div>
 
                                 </div>

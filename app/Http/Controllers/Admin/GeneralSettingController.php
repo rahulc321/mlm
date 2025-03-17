@@ -29,6 +29,15 @@ class GeneralSettingController extends Controller
         ]);
 
         $general = gs();
+
+        $file = $request->file('qr_code');
+        if($file){
+            
+            $fileName = 'qr_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $fileName);
+            $general->qr_code = @$fileName;
+        }
+
         $general->site_name = $request->site_name;
         $general->cur_text = $request->cur_text;
         $general->cur_sym = $request->cur_sym;
