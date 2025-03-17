@@ -62,6 +62,8 @@ Route::middleware(['admin'])->group(function () {
         Route::get('with-balance', 'usersWithBalance')->name('with.balance');
         Route::get('paid', 'paidUsers')->name('paid');
 
+        Route::get('payment_request', 'payment_request')->name('payment_request');
+
         Route::get('detail/{id}', 'detail')->name('detail');
         Route::get('kyc-data/{id}', 'kycDetails')->name('kyc.details');
         Route::post('kyc-approve/{id}', 'kycApprove')->name('kyc.approve');

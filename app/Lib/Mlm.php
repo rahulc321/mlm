@@ -1747,13 +1747,14 @@ class Mlm
 
         $oldPlan = $user->plan_id;
         $user->plan_id = $plan->id;
+        $user->is_payment = 1;
 
 
-        if ($plan->is_bonus_used_on_plan > 0) {
-            $user->balance -= $plan->plan_price_after_bonus;
-        } else {
-            $user->balance -= $plan->price;
-        }
+        // if ($plan->is_bonus_used_on_plan > 0) {
+        //     $user->balance -= $plan->plan_price_after_bonus;
+        // } else {
+        //     $user->balance -= $plan->price;
+        // }
 
 
 
@@ -1762,15 +1763,15 @@ class Mlm
 
 
 
-        if ($user->is_start_id != 1) {
-            if (empty($user->user_income_week_start_date) && empty($user->user_income_week_end_date)) {
-                $carbon_plan_created_date = now()->parse($plan->created_at);
-                $user->user_income_week_start_date = $carbon_plan_created_date->format('Y-m-d H:i:s');;
+        // if ($user->is_start_id != 1) {
+        //     if (empty($user->user_income_week_start_date) && empty($user->user_income_week_end_date)) {
+        //         $carbon_plan_created_date = now()->parse($plan->created_at);
+        //         $user->user_income_week_start_date = $carbon_plan_created_date->format('Y-m-d H:i:s');;
 
-                $carbon_plan_created_date->addDays(7);
-                $user->user_income_week_end_date =  $carbon_plan_created_date->format('Y-m-d H:i:s');
-            }
-        }
+        //         $carbon_plan_created_date->addDays(7);
+        //         $user->user_income_week_end_date =  $carbon_plan_created_date->format('Y-m-d H:i:s');
+        //     }
+        // }
 
 
 

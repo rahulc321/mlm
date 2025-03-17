@@ -44,7 +44,7 @@ $notice = getContent('notice.content', true);
         </div>
         <div class="card-body">
             <p class="card-text">
-                {{ __($notice->data_values->notice_content) }}
+                Your dashboard
             </p>
         </div>
     </div>

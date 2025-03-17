@@ -17,53 +17,8 @@
                     </div>
                 </div>
                 <!-- dashboard-w1 end -->
-
-                <div class="col-xxl-3 col-sm-6">
-                    <div class="widget-two style--two box--shadow2 b-radius--5 bg--primary">
-                        <div class="widget-two__icon b-radius--5 bg--primary">
-                            <i class="las la-wallet"></i>
-                        </div>
-                        <div class="widget-two__content">
-                            <h3 class="text-white">{{ $general->cur_sym }}{{ showAmount($totalDeposit) }}</h3>
-                            <p class="text-white">@lang('Deposits')</p>
-                        </div>
-                        <a class="widget-two__btn" href="{{ route('admin.deposit.list') }}?search={{ $user->username }}">@lang('View All')</a>
-                    </div>
-                </div>
-                <!-- dashboard-w1 end -->
-
-                <div class="col-xxl-3 col-sm-6">
-                    <div class="widget-two style--two box--shadow2 b-radius--5 bg--1">
-                        <div class="widget-two__icon b-radius--5 bg--primary">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="widget-two__content">
-                            <h3 class="text-white">{{ $general->cur_sym }}{{ showAmount($totalWithdrawals) }}</h3>
-                            <p class="text-white">@lang('Withdrawals')</p>
-                        </div>
-                        <a class="widget-two__btn" href="{{ route('admin.withdraw.log') }}?search={{ $user->username }}">@lang('View All')</a>
-                    </div>
-                </div>
-                <!-- dashboard-w1 end -->
-
-                <div class="col-xxl-3 col-sm-6">
-                    <div class="widget-two style--two box--shadow2 b-radius--5 bg--17">
-                        <div class="widget-two__icon b-radius--5 bg--primary">
-                            <i class="las la-exchange-alt"></i>
-                        </div>
-                        <div class="widget-two__content">
-                            <h3 class="text-white">{{ $totalTransaction }}</h3>
-                            <p class="text-white">@lang('Transactions')</p>
-                        </div>
-                        <a class="widget-two__btn" href="{{ route('admin.report.transaction') }}?search={{ $user->username }}&exact_match=true">@lang('View All')</a>
-                    </div>
-                </div>
-                <!-- dashboard-w1 end -->
-
-            </div>
-
-            <div class="row gy-4 mt-2">
-
+ 
+               
                 <div class="col-xxl-3 col-sm-6">
                     <div class="widget-two style--two box--shadow2 b-radius--5 bg--17">
                         <div class="widget-two__icon b-radius--5 bg--primary">
@@ -76,51 +31,11 @@
                         <a class="widget-two__btn" href="{{ route('admin.report.invest') }}?search={{ $user->username }}&exact_match=true">@lang('View All')</a>
                     </div>
                 </div>
-                <!-- dashboard-w1 end -->
-
-                <div class="col-xxl-3 col-sm-6">
-                    <div class="widget-two style--two box--shadow2 b-radius--5 bg--18">
-                        <div class="widget-two__icon b-radius--5 bg--primary">
-                            <i class="las la-wallet"></i>
-                        </div>
-                        <div class="widget-two__content">
-                            <h3 class="text-white">{{ $general->cur_sym }}{{ showAmount($user->total_ref_com) }}</h3>
-                            <p class="text-white">@lang('Total Referral Commission')</p>
-                        </div>
-                        <a class="widget-two__btn" href="{{ route('admin.report.referral.commission') }}?search={{ $user->username }}&exact_match=true">@lang('View All')</a>
-                    </div>
-                </div>
-                <!-- dashboard-w1 end -->
-
-                <div class="col-xxl-3 col-sm-6">
-                    <div class="widget-two style--two box--shadow2 b-radius--5 bg--3">
-                        <div class="widget-two__icon b-radius--5 bg--primary">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="widget-two__content">
-                            <h3 class="text-white">{{ $general->cur_sym }}{{ showAmount($user->total_binary_com) }}</h3>
-                            <p class="text-white">@lang('Total Binary Commission')</p>
-                        </div>
-                        <a class="widget-two__btn" href="{{ route('admin.report.binary.commission') }}?search={{ $user->username }}&exact_match=true">@lang('View All')</a>
-                    </div>
-                </div>
-                <!-- dashboard-w1 end -->
-
-                <div class="col-xxl-3 col-sm-6">
-                    <div class="widget-two style--two box--shadow2 b-radius--5 bg--4">
-                        <div class="widget-two__icon b-radius--5 bg--primary">
-                            <i class="las la-exchange-alt"></i>
-                        </div>
-                        <div class="widget-two__content">
-                            <h3 class="text-white">{{ getAmount($totalBv) }}</h3>
-                            <p class="text-white">@lang('Total BV')</p>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- dashboard-w1 end -->
+                
 
             </div>
+
+            
 
             <div class="d-flex mt-4 flex-wrap gap-3">
                 <div class="flex-fill">
@@ -195,14 +110,14 @@
                         @csrf
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 d-none">
                                 <div class="form-group">
                                     <label>@lang('First Name')</label>
                                     <input class="form-control" name="firstname" type="text" value="{{ $user->firstname }}" required>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 d-none">
                                 <div class="form-group">
                                     <label class="form-control-label">@lang('Last Name')</label>
                                     <input class="form-control" name="lastname" type="text" value="{{ $user->lastname }}" required>
