@@ -443,7 +443,9 @@ class UserController extends Controller
     }
 
     public function userData()
-    {
+    {   
+
+         
         $user = auth()->user();
         if ($user->profile_complete == 1) {
             return to_route('user.home');

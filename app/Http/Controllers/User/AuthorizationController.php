@@ -98,8 +98,11 @@ class AuthorizationController extends Controller
             $user->ev = Status::VERIFIED;
             $user->ver_code = null;
             $user->ver_code_send_at = null;
+            $user->profile_complete = 1;
             $user->save();
-            return to_route('user.home');
+
+            $notify[] = ['success', 'Registration process completed successfully'];
+            return to_route('user.home')->withNotify($notify);
         }
         throw ValidationException::withMessages(['code' => 'Verification code didn\'t match!']);
     }
